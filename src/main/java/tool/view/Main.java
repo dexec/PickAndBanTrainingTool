@@ -1,6 +1,7 @@
 package tool.view;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -45,87 +46,33 @@ public class Main extends Application {
         menuAdc.getItems().addAll(itemAdcBlue, itemAdcRed);
         menuSupp.getItems().addAll(itemSuppBlue, itemSuppRed);
 
-        itemAll.setOnAction(event -> {
-            ChampSelect cs = new ChampSelect(Side.NONE, Lane.NONE);
-            GridPane gp = cs.generateView();
-            VBox vbox = new VBox(menuBar, gp);
-            primaryStage.setScene(new Scene(vbox, 300, 400));
-            primaryStage.show();
-        });
-        itemTopBlue.setOnAction(event -> {
-            ChampSelect cs = new ChampSelect(Side.BLUE, Lane.TOP);
-            GridPane gp = cs.generateView();
-            VBox vbox = new VBox(menuBar, gp);
-            primaryStage.setScene(new Scene(vbox, 300, 400));
-            primaryStage.show();
-        });
-        itemTopRed.setOnAction(event -> {
-            ChampSelect cs = new ChampSelect(Side.RED, Lane.TOP);
-            GridPane gp = cs.generateView();
-            VBox vbox = new VBox(menuBar, gp);
-            primaryStage.setScene(new Scene(vbox, 300, 400));
-            primaryStage.show();
-        });
-        itemJglBlue.setOnAction(event -> {
-            ChampSelect cs = new ChampSelect(Side.BLUE, Lane.JGL);
-            GridPane gp = cs.generateView();
-            VBox vbox = new VBox(menuBar, gp);
-            primaryStage.setScene(new Scene(vbox, 300, 400));
-            primaryStage.show();
-        });
-        itemJglRed.setOnAction(event -> {
-            ChampSelect cs = new ChampSelect(Side.RED, Lane.JGL);
-            GridPane gp = cs.generateView();
-            VBox vbox = new VBox(menuBar, gp);
-            primaryStage.setScene(new Scene(vbox, 300, 400));
-            primaryStage.show();
-        });
-        itemMidBlue.setOnAction(event -> {
-            ChampSelect cs = new ChampSelect(Side.BLUE, Lane.MID);
-            GridPane gp = cs.generateView();
-            VBox vbox = new VBox(menuBar, gp);
-            primaryStage.setScene(new Scene(vbox, 300, 400));
-            primaryStage.show();
-        });
-        itemMidRed.setOnAction(event -> {
-            ChampSelect cs = new ChampSelect(Side.RED, Lane.MID);
-            GridPane gp = cs.generateView();
-            VBox vbox = new VBox(menuBar, gp);
-            primaryStage.setScene(new Scene(vbox, 300, 400));
-            primaryStage.show();
-        });
-        itemAdcBlue.setOnAction(event -> {
-            ChampSelect cs = new ChampSelect(Side.BLUE, Lane.ADC);
-            GridPane gp = cs.generateView();
-            VBox vbox = new VBox(menuBar, gp);
-            primaryStage.setScene(new Scene(vbox, 300, 400));
-            primaryStage.show();
-        });
-        itemAdcRed.setOnAction(event -> {
-            ChampSelect cs = new ChampSelect(Side.RED, Lane.ADC);
-            GridPane gp = cs.generateView();
-            VBox vbox = new VBox(menuBar, gp);
-            primaryStage.setScene(new Scene(vbox, 300, 400));
-            primaryStage.show();
-        });
-        itemSuppBlue.setOnAction(event -> {
-            ChampSelect cs = new ChampSelect(Side.BLUE, Lane.SUPP);
-            GridPane gp = cs.generateView();
-            VBox vbox = new VBox(menuBar, gp);
-            primaryStage.setScene(new Scene(vbox, 300, 400));
-            primaryStage.show();
-        });
-        itemSuppRed.setOnAction(event -> {
-            ChampSelect cs = new ChampSelect(Side.RED, Lane.SUPP);
-            GridPane gp = cs.generateView();
-            VBox vbox = new VBox(menuBar, gp);
-            primaryStage.setScene(new Scene(vbox, 300, 400));
-            primaryStage.show();
-        });
+        itemAll.setOnAction(event -> champSelectView(primaryStage, menuBar, Side.NONE, Lane.NONE));
+        itemTopBlue.setOnAction(event -> champSelectView(primaryStage, menuBar, Side.BLUE, Lane.TOP));
+        itemTopRed.setOnAction(event -> champSelectView(primaryStage, menuBar, Side.RED, Lane.TOP));
+        itemJglBlue.setOnAction(event -> champSelectView(primaryStage, menuBar, Side.BLUE, Lane.JGL));
+        itemJglRed.setOnAction(event -> champSelectView(primaryStage, menuBar, Side.RED, Lane.JGL));
+        itemMidBlue.setOnAction(event -> champSelectView(primaryStage, menuBar, Side.BLUE, Lane.MID));
+        itemMidRed.setOnAction(event -> champSelectView(primaryStage, menuBar, Side.RED, Lane.MID));
+        itemAdcBlue.setOnAction(event -> champSelectView(primaryStage, menuBar, Side.BLUE, Lane.ADC));
+        itemAdcRed.setOnAction(event -> champSelectView(primaryStage, menuBar, Side.RED, Lane.ADC));
+        itemSuppBlue.setOnAction(event -> champSelectView(primaryStage, menuBar, Side.BLUE, Lane.SUPP));
+        itemSuppRed.setOnAction(event -> champSelectView(primaryStage, menuBar, Side.RED, Lane.SUPP));
 
         VBox vbox = new VBox(menuBar, new Pane());
         primaryStage.setScene(new Scene(vbox, 300, 100));
         primaryStage.setTitle("Champ Select");
         primaryStage.show();
+    }
+
+    private void champSelectView(Stage primaryStage, MenuBar menuBar, Side side, Lane lane) {
+        ChampSelect cs = new ChampSelect(side, lane);
+        GridPane gp = cs.generateView();
+        Button refresh = new Button("Refresh");
+        VBox vbox = new VBox(new VBox(menuBar, gp), refresh);
+        vbox.setAlignment(Pos.CENTER);
+        primaryStage.setScene(new Scene(vbox, 300, 400));
+        primaryStage.show();
+        refresh.setOnAction(event -> champSelectView(primaryStage, menuBar, side, lane));
+        System.out.println(side + " " + lane);
     }
 }
