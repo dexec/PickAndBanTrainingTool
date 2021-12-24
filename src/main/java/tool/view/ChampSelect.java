@@ -94,21 +94,20 @@ public class ChampSelect {
         gp.add(rp5, 2, 5);
 
         //Alles mittig setzen
+        align(blueTeam, redTeam, bp1, bp2, bp3, bp4);
+        align(bp5, rp1, rp2, rp3, rp4, rp5);
+
+        fillLabels(bp1, bp2, bp3, bp4, bp5, rp1, rp2, rp3, rp4, rp5);
+        return gp;
+    }
+
+    private void align(Label blueTeam, Label redTeam, Label bp1, Label bp2, Label bp3, Label bp4) {
         GridPane.setHalignment(blueTeam, HPos.CENTER);
         GridPane.setHalignment(redTeam, HPos.CENTER);
         GridPane.setHalignment(bp1, HPos.CENTER);
         GridPane.setHalignment(bp2, HPos.CENTER);
         GridPane.setHalignment(bp3, HPos.CENTER);
         GridPane.setHalignment(bp4, HPos.CENTER);
-        GridPane.setHalignment(bp5, HPos.CENTER);
-        GridPane.setHalignment(rp1, HPos.CENTER);
-        GridPane.setHalignment(rp2, HPos.CENTER);
-        GridPane.setHalignment(rp3, HPos.CENTER);
-        GridPane.setHalignment(rp4, HPos.CENTER);
-        GridPane.setHalignment(rp5, HPos.CENTER);
-
-        fillLabels(bp1, bp2, bp3, bp4, bp5, rp1, rp2, rp3, rp4, rp5);
-        return gp;
     }
 
     private void generateChampSelect() {
@@ -293,7 +292,7 @@ public class ChampSelect {
         }
         switch (index) {
             case 0:
-                bp1.setText("Your Pick");
+                bp1.setText("Your Pick " + lane);
                 bp1.setTextFill(Color.GREEN);
                 rp1.setText("?");
                 bp2.setText("?");
@@ -308,7 +307,7 @@ public class ChampSelect {
             case 1:
                 bp1.setText(champSelectChampions.get(0).getLane() + " " + champSelectChampions.get(0).getName());
                 rp1.setText(champSelectChampions.get(5).getName() + " " + champSelectChampions.get(5).getLane());
-                bp2.setText("Your Pick");
+                bp2.setText("Your Pick " + lane);
                 bp2.setTextFill(Color.GREEN);
                 rp2.setText(champSelectChampions.get(6).getName() + " " + champSelectChampions.get(6).getLane());
                 bp3.setText("?");
@@ -323,7 +322,7 @@ public class ChampSelect {
                 rp1.setText(champSelectChampions.get(5).getName() + " " + champSelectChampions.get(5).getLane());
                 bp2.setText("?");
                 rp2.setText(champSelectChampions.get(6).getName() + " " + champSelectChampions.get(6).getLane());
-                bp3.setText("Your Pick");
+                bp3.setText("Your Pick " + lane);
                 bp3.setTextFill(Color.GREEN);
                 rp3.setText("?");
                 bp4.setText("?");
@@ -338,7 +337,7 @@ public class ChampSelect {
                 rp2.setText(champSelectChampions.get(6).getName() + " " + champSelectChampions.get(6).getLane());
                 bp3.setText(champSelectChampions.get(2).getLane() + " " + champSelectChampions.get(2).getName());
                 rp3.setText(champSelectChampions.get(7).getName() + " " + champSelectChampions.get(7).getLane());
-                bp4.setText("Your Pick");
+                bp4.setText("Your Pick " + lane);
                 bp4.setTextFill(Color.GREEN);
                 rp4.setText(champSelectChampions.get(8).getName() + " " + champSelectChampions.get(8).getLane());
                 bp5.setText("?");
@@ -353,13 +352,13 @@ public class ChampSelect {
                 rp3.setText(champSelectChampions.get(7).getName() + " " + champSelectChampions.get(7).getLane());
                 bp4.setText("?");
                 rp4.setText(champSelectChampions.get(8).getName() + " " + champSelectChampions.get(8).getLane());
-                bp5.setText("Your Pick");
+                bp5.setText("Your Pick " + lane);
                 bp5.setTextFill(Color.GREEN);
                 rp5.setText("?");
                 break;
             case 5:
                 bp1.setText(champSelectChampions.get(0).getLane() + " " + champSelectChampions.get(0).getName());
-                rp1.setText("Your Pick");
+                rp1.setText("Your Pick " + lane);
                 rp1.setTextFill(Color.GREEN);
                 bp2.setText("?");
                 rp2.setText("?");
@@ -374,7 +373,7 @@ public class ChampSelect {
                 bp1.setText(champSelectChampions.get(0).getLane() + " " + champSelectChampions.get(0).getName());
                 rp1.setText("?");
                 bp2.setText("?");
-                rp2.setText("Your Pick");
+                rp2.setText("Your Pick " + lane);
                 rp2.setTextFill(Color.GREEN);
                 bp3.setText("?");
                 rp3.setText("?");
@@ -389,7 +388,7 @@ public class ChampSelect {
                 bp2.setText(champSelectChampions.get(1).getLane() + " " + champSelectChampions.get(1).getName());
                 rp2.setText(champSelectChampions.get(6).getName() + " " + champSelectChampions.get(6).getLane());
                 bp3.setText(champSelectChampions.get(2).getLane() + " " + champSelectChampions.get(2).getName());
-                rp3.setText("Your Pick");
+                rp3.setText("Your Pick " + lane);
                 rp3.setTextFill(Color.GREEN);
                 bp4.setText("?");
                 rp4.setText("?");
@@ -404,7 +403,7 @@ public class ChampSelect {
                 bp3.setText(champSelectChampions.get(2).getLane() + " " + champSelectChampions.get(2).getName());
                 rp3.setText("?");
                 bp4.setText("?");
-                rp4.setText("Your Pick");
+                rp4.setText("Your Pick " + lane);
                 rp4.setTextFill(Color.GREEN);
                 bp5.setText("?");
                 rp5.setText("?");
@@ -419,7 +418,7 @@ public class ChampSelect {
                 bp4.setText(champSelectChampions.get(3).getLane() + " " + champSelectChampions.get(3).getName());
                 rp4.setText(champSelectChampions.get(8).getName() + " " + champSelectChampions.get(8).getLane());
                 bp5.setText(champSelectChampions.get(4).getLane() + " " + champSelectChampions.get(4).getName());
-                rp5.setText("Your Pick");
+                rp5.setText("Your Pick " + lane);
                 rp5.setTextFill(Color.GREEN);
                 break;
             case 10:
